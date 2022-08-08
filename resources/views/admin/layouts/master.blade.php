@@ -33,11 +33,11 @@
 
 <body>
 
-   @include('Admin.layout.sidebar')
+   @include('admin.layouts.sidebar')
     <!-- /# sidebar -->
 
-   
-   @include('Admin.layout.topbar')
+
+   @include('admin.layouts.topbar')
 
     <div class="content-wrap">
         <div class="main">

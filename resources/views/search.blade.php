@@ -23,7 +23,7 @@
                             </div>
                         </div>
                     </div> --}}
-                    @foreach ($post as $data )
+                    @foreach ($posts as $data )
                         <div class="card" style="width: 18rem; margin-right:3px;">
                             {{-- <img class="card-img-top" src="..." alt="Card image cap"> --}}
                             <div class="card-body">
