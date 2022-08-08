@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Job;
 use Auth;
+use File;
 
 class UserController extends Controller
 {
@@ -25,15 +26,27 @@ class UserController extends Controller
     public function storePost(Request $request){
 
         $validate = $request->validate([
-            'title' => 'Required',
-            'description' => 'Required',
+            'title' => 'Required|max:10',
+            'description' => 'Required|max:5',
         ]);
 
+        // return $request->all();
         $job = new Job();
         $job->title = $request->title;
         $job->description = $request->description;
         $job->status = $request->status;
         $job->user_id = Auth::user()->id;
+
+        if($request->image){
+
+            $file = $request->file('image');
+            $ext = $file->getClientOriginalExtension();
+            $name = time().'.'.$ext;
+            $path = "images/job";
+            $file->move($path, $name);
+            $job->image = $name;
+        }
+
         $job->save();
         return redirect()->route('user.post.all');
     }
@@ -51,6 +64,18 @@ class UserController extends Controller
          $job = Job::find($id);
          $job->title = $request->title;
          $job->description = $request->description;
+         if($request->image){
+
+            if(File::exists($job->image)){
+                File::unlink($job->image);
+            }
+            $file = $request->file('image');
+            $ext = $file->getClientOriginalExtension();
+            $name = time().'.'.$ext;
+            $path = "images/job";
+            $file->move($path, $name);
+            $job->image = $name;
+        }
          $job->save();
          return redirect()->route('user.post.all');
      }

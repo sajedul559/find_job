@@ -47,6 +47,10 @@
                             <label for="exampleInputEmail1">Description</label>
                             <input type="text" class="form-control" name="description" aria-describedby="emailHelp" value="{{$post->description}}">
                        </div>
+                       <div class="form-group">
+                            <label for="exampleInputEmail1">Image</label>
+                            <input type="file" class="form-control" name="image" aria-describedby="emailHelp">
+                      </div>
                         <button type="submit" class="btn btn-primary">Update Post</button>
                       </form>
 

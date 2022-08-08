@@ -32,8 +32,6 @@
                             </div>
                         </div>
                     @endforeach
-
-
                 </div>
                 <!-- More Btn -->
                 <!-- Section Button -->

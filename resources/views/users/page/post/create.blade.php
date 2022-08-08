@@ -36,16 +36,22 @@
               <div class="card mb-3">
                 <div class="card-body">
 
-                    <form action="{{route('user.post.create')}}" method="post" enctype="multipart/form">
+                    <form action="{{route('user.post.create')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <h4 class="text-center">Post your job here</h4>
                         <div class="form-group">
                           <label for="exampleInputEmail1">Title</label>
                           <input type="text" class="form-control" name="title" aria-describedby="emailHelp">
+                          @error('title')
+                          <div style="color:red"> {{ $message }} </div>
+                          @enderror
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Description</label>
                             <input type="text" class="form-control" name="description" aria-describedby="emailHelp">
+                            @error('description')
+                            <div style="color:red"> {{ $message }} </div>
+                            @enderror
                        </div>
                        <div class="form-group">
                         <label for="exampleInputEmail1">Image</label>
