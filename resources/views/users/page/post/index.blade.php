@@ -73,7 +73,8 @@
                                 <td>{{$data->description}}</td>
                                 <td>
                                     <a href="{{route('user.post.edit',$data->id)}}" class="btn btn-info btn-sm edit"  ><i class="fas fa-edit"></i></a>
-                                    <a href="{{route('user.post.delete',$data->id)}}" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
+                                    <a href="{{route('user.post.delete',$data->id)}}" onclick"handleDelete(event);" id="delete" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
+
                                 </td>
                               </tr>
                             @empty

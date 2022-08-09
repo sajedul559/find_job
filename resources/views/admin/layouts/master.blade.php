@@ -23,6 +23,7 @@
     <link href="{{asset('backend/assets/css/lib/font-awesome.min.css')}}" rel="stylesheet">
     <link href="{{asset('backend/assets/css/lib/themify-icons.css')}}" rel="stylesheet">
     <link href="{{asset('backend/assets/css/lib/owl.carousel.min.css')}}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{asset('frontend/assets/css/fontawesome-all.min.css')}}">
     <link href="{{asset('backend/assets/css/lib/owl.theme.default.min.css')}}" rel="stylesheet" />
     <link href="{{asset('backend/assets/css/lib/weather-icons.css')}}" rel="stylesheet" />
     <link href="{{asset('backend/assets/css/lib/menubar/sidebar.css')}}" rel="stylesheet">
@@ -75,6 +76,49 @@
     <script src="{{asset('backend/assets/js/lib/owl-carousel/owl.carousel-init.js')}}"></script>
     <!-- scripit init-->
     <script src="{{asset('backend/assets/js/dashboard2.js')}}"></script>
+    <script src="{{asset('frontend/assets/js/sweetalert.min.js')}}"></script>
+
+    <script>
+
+        $(document).on("click", "#delete", function(e){
+                e.preventDefault();
+                var link = $(this).attr("href");
+                    swal({
+                        title: "Are you Want to delete?",
+                        text: "Once Delete, This will be Permanently Delete!",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            window.location.href = link;
+                        } else {
+                        swal("Safe Data!");
+                        }
+                    });
+                });
+        $(document).on("click", "#logout", function(e){
+                e.preventDefault();
+                var link = $(this).attr("href");
+                swal({
+                    title: "Are want to logout?",
+                    text: "Once Logout, Session will destroyed!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        window.location.href = link;
+                    } else {
+                    swal("Back to dashboard!");
+                    }
+                });
+            });
+    </script>
+
+    
 </body>
 
 </html>

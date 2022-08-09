@@ -39,24 +39,82 @@
                     <form action="{{route('user.post.create')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <h4 class="text-center">Post your job here</h4>
-                        <div class="form-group">
-                          <label for="exampleInputEmail1">Title</label>
-                          <input type="text" class="form-control" name="title" aria-describedby="emailHelp">
-                          @error('title')
-                          <div style="color:red"> {{ $message }} </div>
-                          @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Description</label>
-                            <input type="text" class="form-control" name="description" aria-describedby="emailHelp">
-                            @error('description')
+                         <div class="row col-md-12">
+                              <div class="form-group col-md-4">
+                                <label for="exampleInputEmail1">Title</label>
+                                <input type="text" class="form-control" name="title" aria-describedby="emailHelp">
+                                @error('title')
+                                <div style="color:red"> {{ $message }} </div>
+                                @enderror
+                              </div>
+                              <div class="form-group col-md-4">
+                                <label for="exampleInputEmail1">Job Type</label>
+                                <input type="text" class="form-control" name="type" aria-describedby="emailHelp">
+                                @error('type')
+                                <div style="color:red"> {{ $message }} </div>
+                                @enderror
+                            </div>
+                            <div class="form-group col-md-4">
+                              <label for="exampleInputEmail1">Job Category</label>
+                              <select class="form-select form-control"  name="status" aria-label="Default select example">
+                                <option class="form-control" selected>Open this select menu</option>
+                                @foreach ($categories as  $data)
+                                <option class="form-control" value="1">{{$data->name}}</option>
+
+                                @endforeach
+                                
+                              </select> 
+                             
+                          </div>
+                         </div>
+                         <div class="row col-md-12">
+                            <div class="form-group col-md-6">
+                                <label for="exampleInputEmail1">Vacancy</label>
+                                <input type="text" class="form-control" name="vacancy" aria-describedby="emailHelp">
+                                @error('vacancy')
+                                <div style="color:red"> {{ $message }} </div>
+                                @enderror
+                            </div>
+                            <div class="form-group col-md-6">
+                              <label for="exampleInputEmail1">Company Name</label>
+                              <input type="text" class="form-control" name="company" aria-describedby="emailHelp">
+                              @error('company')
+                              <div style="color:red"> {{ $message }} </div>
+                              @enderror
+                            </div>
+                         </div>
+                         <div class="row col-md-12">
+                          <div class="form-group col-md-6">
+                              <label for="exampleInputEmail1">Location</label>
+                              <input type="text" class="form-control" name="location" aria-describedby="emailHelp">
+                              @error('location')
+                              <div style="color:red"> {{ $message }} </div>
+                              @enderror
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="exampleInputEmail1">Company Email</label>
+                            <input type="text" class="form-control" name="email" aria-describedby="emailHelp">
+                            @error('email')
                             <div style="color:red"> {{ $message }} </div>
                             @enderror
+                          </div>
                        </div>
-                       <div class="form-group">
-                        <label for="exampleInputEmail1">Image</label>
-                        <input type="file" class="form-control" name="image" aria-describedby="emailHelp">
-                      </div>
+                         <div class="row col-md-12">
+                             <div class="form-group col-md-6">
+                                  <label for="exampleInputEmail1">Description</label>
+                                  <input type="text" class="form-control" name="description" aria-describedby="emailHelp">
+                                  @error('description')
+                                  <div style="color:red"> {{ $message }} </div>
+                                  @enderror
+                            </div>
+                            <div class="form-group col-md-6">
+                              <label for="exampleInputEmail1">Image</label>
+                              <input type="file" class="form-control" name="image" aria-describedby="emailHelp">
+                            </div>
+                         </div>
+                      
+                       
+                       
                         <button type="submit" class="btn btn-primary">Submit</button>
                       </form>
 

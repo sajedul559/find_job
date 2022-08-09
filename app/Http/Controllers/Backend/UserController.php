@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Job;
+use App\Models\Category;
 use Auth;
 use File;
 
@@ -20,7 +21,8 @@ class UserController extends Controller
     }
 
     public function postForm(){
-        return view('users.page.post.create');
+        $categories = Category::all();
+        return view('users.page.post.create',compact('categories'));
 
     }
     public function storePost(Request $request){
@@ -48,7 +50,9 @@ class UserController extends Controller
         }
 
         $job->save();
-        return redirect()->route('user.post.all');
+         toastr()->success('Your job post successfully stor our DB');
+         return redirect()->route('user.post.all');       
+       
     }
     public function editPost($id){
       $post = Job::find($id);
@@ -77,10 +81,14 @@ class UserController extends Controller
             $job->image = $name;
         }
          $job->save();
+         toastr()->success('Your post  update successfully');
+
          return redirect()->route('user.post.all');
      }
      public function deletePost($id){
         $job = Job::find($id)->delete();
+        toastr()->success('Post delete successfully!');
+
         return back();
      }
 
@@ -90,6 +98,8 @@ class UserController extends Controller
         $user->address = $request->address;
         $user->phone = $request->phone;
         $user->save();
+        toastr()->success('Your profile update successfully!');
+
         return  back();
 
      }

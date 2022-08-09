@@ -28,10 +28,23 @@ Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::group(['namespace' => 'Admin'], function() {
+Route::group(['namespace' => 'App\Http\Controllers\Admin'], function() {
 
     Route::group(['prefix' => 'admin','as'=>'admin.'], function() {
-        Route::get('/',[AdminController::class,'index'])->name('index');
+
+
+        Route::get('/login',[AdminController::class,'login'])->name('login.form');
+        Route::post('/login/check',[AdminController::class,'handleLogin'])->name('login');
+
+        Route::group(['middleware'=>'admin'],function(){
+            Route::get('/',[AdminController::class,'index'])->name('index');
+            Route::get('/logout',[AdminController::class,'logout'])->name('logout');
+            
+            Route::resource('categories', CategoryController::class);
+
+            
+        });
+
 
 
     });

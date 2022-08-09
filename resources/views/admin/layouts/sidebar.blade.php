@@ -13,7 +13,34 @@
                 <li><a class="sidebar-sub-toggle"><i class="ti-bar-chart-alt"></i> Users <span
                             class="sidebar-collapse-icon ti-angle-down"></span></a>
                     <ul>
-                        <li><a href="chart-flot.html">All Users</a></li>
+                        <li><a href="chart-flot.html">Active Users</a></li>
+                        <li><a href="chart-flot.html">Deactive Users</a></li>
+
+                        
+                    </ul>
+                </li>
+                <li><a class="sidebar-sub-toggle"><i class="ti-bar-chart-alt"></i> Job Post <span
+                    class="sidebar-collapse-icon ti-angle-down"></span></a>
+                    <ul>
+                        <li><a href="chart-flot.html">Active Post</a></li>
+                        <li><a href="chart-flot.html">Deactive Post</a></li>
+
+                        
+                    </ul>
+                </li> 
+               <li><a class="sidebar-sub-toggle"><i class="ti-bar-chart-alt"></i> Job Apply <span
+                    class="sidebar-collapse-icon ti-angle-down"></span></a>
+                    <ul>
+                        <li><a href="chart-flot.html">All Apply</a></li>
+                        
+                    </ul>
+                </li>
+                <li><a class="sidebar-sub-toggle"><i class="ti-bar-chart-alt"></i> Categories <span
+                    class="sidebar-collapse-icon ti-angle-down"></span></a>
+                    <ul>
+                        <li><a href="{{route('admin.categories.create')}}">Create</a></li>
+                        <li><a href="{{route('admin.categories.index')}}">All</a></li>
+
                         
                     </ul>
                 </li>

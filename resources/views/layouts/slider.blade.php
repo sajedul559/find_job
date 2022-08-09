@@ -1,7 +1,7 @@
 <div class="slider-area ">
     <!-- Mobile Menu -->
     <div class="slider-active">
-        <div class="single-slider slider-height d-flex align-items-center"  data-background="{{asset('frontend/assets/img/blog/blog_4.png')}}">
+        <div class="single-slider slider-height d-flex align-items-center"  data-background="{{asset('frontend/assets/img/hero/h1_hero.jpg')}}">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-6 col-lg-9 col-md-10">
@@ -20,7 +20,7 @@
                                 <input type="text" name="search" placeholder="Job Tittle or keyword">
                             </div>
                             <div class="select-form">
-                                <div class="select-itms mt-3" >
+                                <div class="select-itms " >
                                     <select name="select" id="select1">
                                         <option value="">Location BD</option>
                                         <option value="">Location PK</option>
