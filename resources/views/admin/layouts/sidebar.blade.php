@@ -38,8 +38,8 @@
                 <li><a class="sidebar-sub-toggle"><i class="ti-bar-chart-alt"></i> Categories <span
                     class="sidebar-collapse-icon ti-angle-down"></span></a>
                     <ul>
-                        <li><a href="{{route('admin.categories.create')}}">Create</a></li>
-                        <li><a href="{{route('admin.categories.index')}}">All</a></li>
+                        <li><a href="{{route('admin.category.create')}}">Create</a></li>
+                        <li><a href="{{route('admin.category.index')}}">All</a></li>
 
                         
                     </ul>

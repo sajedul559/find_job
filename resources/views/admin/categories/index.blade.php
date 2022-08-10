@@ -49,8 +49,8 @@
                          @endif
                       </td>
                       <td>
-                      	<a href="#" class="btn btn-info btn-sm edit" data-id="{{ $row->id }}" data-toggle="modal" data-target="#editModal" ><i class="fas fa-edit"></i></a>
-                      	<a href="{{route('admin.categories.destroy',$row->id) }}" class="btn btn-danger btn-sm" id="delete"><i class="fas fa-trash"></i></a>
+                      	<a href="{{route('admin.category.edit',$row->id)}}" class="btn btn-info btn-sm update_std" data-id="{{ $row->id }}" data-toggle="modal" data-target="#editModal" ><i class="fas fa-edit"></i></a>
+                      	<a href="{{route('admin.category.delete',$row->id) }}" class="btn btn-danger btn-sm" id="delete"><i class="fas fa-trash"></i></a>
                       </td>
                     </tr>
                    @endforeach
@@ -61,7 +61,7 @@
 	      </div>
 	  </div>
 	</div>
-    {{-- category edit modal --}}
+    {{-- category store modal --}}
 <div class="modal fade" id="categoryModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -71,7 +71,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form action="{{route('admin.categories.store')}}" method="Post" enctype="multipart/form-data">
+        <form action="{{route('admin.category.store')}}" method="Post" enctype="multipart/form-data" >
             @csrf
         <div class="modal-body">
             <div class="form-group">
@@ -90,13 +90,15 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-          <button type="Submit" class="btn btn-primary">Submit</button>
+          <button type="Submit" class="btn btn-primary" id="#category_form">Submit</button>
         </div>
         </form>
       </div>
     </div>
 </div>
-{{-- <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    {{-- category edit modal --}}
+
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -105,19 +107,18 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="{{route('admin.categories.store')}}" method="Post" enctype="multipart/form-data">
+      <form action="{{route('admin.category.update')}}" method="Post" enctype="multipart/form-data">
           @csrf
-      <div class="modal-body" id="modal_data">
+      <div class="modal-body" id="modal_body">
           <div class="form-group">
             <label for="category_name">Category Name</label>
-            <input type="text" class="form-control" id="category_name" name="name" required="" >
+            <input type="text" class="form-control update_name" id="category_name"  name="name"  >
             <small id="emailHelp" class="form-text text-muted">This is your main category</small>
           </div>
           <div class="form-group">
             <label for="category_name">Status </label>
-            <select class="form-select form-control"  name="status" aria-label="Default select example">
-              <option class="form-control" selected>Open this select menu</option>
-              <option class="form-control" value="1">Active</option>
+            <select class="form-select form-control"  name="status" aria-label="Default select example" id="breeds">
+              <option class="form-control" selected value="1">Active</option>
               <option class="form-control" value="2">Inactive</option>
             </select>
           </div>
@@ -129,16 +130,101 @@
       </form>
     </div>
   </div>
-</div> --}}
+</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <script>
-  $('body').on('click','.edit',function(){
-    let id = $(this).data('id');
-    $.get('categories/+ +/edit/'+id,function(data){
-      $('modal_data').html(data);
+  $(document).ready(function() {
+     $(document).on('click', '#category_form', function (e) {
+      e.preventDefault();
+      let url = $(this).attr('action');
+       let request = $(this).serialize();
+       $.ajax({
+          type:'POST',
+          url:url,
+          data: request,
+          headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+          success:function(data){
+            alert('done');
+          }
+       });
+     });
+ });
+ $(".update_std").click(function(){
+    let url = $(this).attr('href');
+
+    $.ajax({
+      url: url,
+      tyep :"GET",
+      success:function(data){
+        alert(data.status);
+        $(".update_name").val(data.name);
+        $(".update_status").val(data.status);
+
+       
+        
+      }
     })
 
+     
+  });
+ </script>
+
+{{-- <script>
+   $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+   });
+
+  
+    $('body').on('click', '#category_form', function (e) {
+    e.preventDefault();
+    let url = $(this).attr('action');
+    let request = $(this).serialize();
+    $(".modal").hide();
+    $.ajax({
+        url : url,
+        type: "POST",
+        data: request,
+        success:function(){
+          
+        }
+    });
+  });
+  //Get Student for update
+  $(".update_std").click(function(){
+    let url = $(this).attr('href');
+
+    $.ajax({
+      url: url,
+      tyep :"GET",
+      success:function(data){
+        $(".update_name").val(data.name);
+        $(".update_email").val(data.email);
+        $(".update_phone").val(data.phone);
+        $("#imageResult").val(data.phone);
+        
+      }
+    })
+
+     
+  });
+
+  $(".student_update").submit(function(e){
+    e.preventDefault();
+    let url = $(this).attr('action');
+    alert(url);
+    $.ajax({
+      url: url,
+      type:"POST",
+      async:false,
+      success:function(){
+        location.reload();
+        console.log('data updated');
+      }
+    })
   })
-</script>
+
+</script> --}}
 @endsection

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\Admin\CategoryController;
 
 
 
@@ -40,7 +41,17 @@ Route::group(['namespace' => 'App\Http\Controllers\Admin'], function() {
             Route::get('/',[AdminController::class,'index'])->name('index');
             Route::get('/logout',[AdminController::class,'logout'])->name('logout');
 
-            Route::resource('categories', CategoryController::class);
+            Route::get('/categories',[CategoryController::class,'index'])->name('category.index');
+            Route::get('/category/create',[CategoryController::class,'create'])->name('category.create');
+            Route::post('/category/store',[CategoryController::class,'store'])->name('category.store');
+            Route::get('/category/edit/{id}',[CategoryController::class,'edit'])->name('category.edit');
+            Route::post('/category/update',[CategoryController::class,'update'])->name('category.update');
+            Route::get('/category/delete/{id}',[CategoryController::class,'delete'])->name('category.delete');
+
+
+
+
+
 
         });
 
