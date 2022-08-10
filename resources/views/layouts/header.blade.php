@@ -18,6 +18,8 @@
                                     <ul id="navigation">
                                         <li><a href="{{route('home')}}">Home</a></li>
                                         <li><a href="contact.html">Contact</a></li>
+                                        <li><a href="{{route('user.job.all')}}">All Job</a></li>
+
                                     </ul>
                                 </nav>
                             </div>
@@ -26,6 +28,7 @@
                             <div class="header-btn d-none f-right d-lg-block">
                                 <a href="{{route('register')}}" class="btn head-btn1">Register</a>
                                 <a href="{{route('login')}}" class="btn head-btn2">Login</a>
+
 
                             </div>
                             @else

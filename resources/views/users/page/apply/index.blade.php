@@ -25,7 +25,7 @@
                       <h4>John Doe</h4>
                       <p class="text-secondary mb-1">Full Stack Developer</p>
                       <p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
-                      <a href="{{route('user.apply.all')}}"class="btn btn-sm btn-outline-primary">Ur Apply</a>
+                      <a href="{{route('user.post.all')}}"class="btn btn-sm btn-outline-primary">Ur Post</a>
                     </div>
                   </div>
                 </div>
@@ -39,21 +39,23 @@
                     <table class="table">
                         <thead>
                           <tr>
-                            <th scope="col">Title</th>
-                            <th scope="col">Description</th>
-                            <th scope="col">Action</th>
+                            <th scope="col">Post Name</th>
+                            <th scope="col">Company</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Salary Range</th>
+                            <th scope="col">Categy Nam</th>
+
+
                           </tr>
                         </thead>
                         <tbody>
-                            @forelse ($post as $data )
+                            @forelse ($my_job_applys as $data )
                             <tr>
-                                <td>{{$data->title}}</td>
-                                <td> {{ substr($data->description, 0,  20) }}</td>
-                                <td>
-                                    <a href="{{route('user.post.edit',$data->id)}}" class="btn btn-info btn-sm edit"  ><i class="fas fa-edit"></i></a>
-                                    <a href="{{route('user.post.delete',$data->id)}}" onclick"handleDelete(event);" id="delete" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
-
-                                </td>
+                                <td>{{$data->job->title}}</td>
+                                <td>{{$data->job->company_name}}</td>
+                                <td>{{$data->job->type}}</td>
+                                <td>{{$data->job->salary_range}}</td>
+                                <td>{{$data->job->category->name}}</td>
                               </tr>
                             @empty
                             <h2 class="text-center">{{$message}}</h2>

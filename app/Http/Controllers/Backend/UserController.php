@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\Job;
-use App\Models\Category;
 use Auth;
 use File;
+use App\Models\Job;
+use App\Models\Apply;
+use App\Models\Category;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
@@ -27,20 +28,29 @@ class UserController extends Controller
     }
     public function storePost(Request $request){
 
+        // return $request->all();
         $validate = $request->validate([
-            'title' => 'Required|max:10',
-            'description' => 'Required|max:5',
+            'title' => 'Required',
+            'description' => 'Required|min:20',
         ]);
 
         // return $request->all();
         $job = new Job();
         $job->title = $request->title;
+        $job->user_id = Auth::user()->id;
+        $job->category_id = $request->cat_id;
+        $job->vacancy = $request->vacancy;
+        $job->company_name = $request->company;
+        $job->salary_range = $request->salary_range;
+        $job->location = $request->location;
+        $job->type = $request->type;
+        $job->web = $request->website;
+        $job->email = $request->email;
+
         $job->description = $request->description;
         $job->status = $request->status;
-        $job->user_id = Auth::user()->id;
 
         if($request->image){
-
             $file = $request->file('image');
             $ext = $file->getClientOriginalExtension();
             $name = time().'.'.$ext;
@@ -48,15 +58,15 @@ class UserController extends Controller
             $file->move($path, $name);
             $job->image = $name;
         }
-
         $job->save();
          toastr()->success('Your job post successfully stor our DB');
-         return redirect()->route('user.post.all');       
-       
+         return redirect()->route('user.post.all');
+
     }
     public function editPost($id){
       $post = Job::find($id);
-      return view('users.page.post.edit',compact('post'));
+      $categories = Category::all();
+      return view('users.page.post.edit',compact('post','categories'));
     }
     public function updatePost(Request $request,$id){
 
@@ -112,4 +122,40 @@ class UserController extends Controller
             ->get();
         return view('search', compact('posts'));
     }
+    public function singlePost($id){
+      $post = Job::find($id);
+      $usercheck = Apply::where('user_id',Auth::user()->id)->get();
+      foreach ($usercheck as $user){
+
+      }
+      return view('users.page.post.single',compact('post','user'));
+    }
+    public function apply(Request $request,$id){
+        $post = Job::find($id);
+        $apply = new Apply();
+        $apply->job_id = $post->id;
+        $apply->user_id = Auth::user()->id;
+        $apply->save();
+        return redirect()->route('home')->with('success','Successfully Applied!');
+    }
+
+    public function showApply(){
+        $my_job_applys= Auth::user()->applies;
+
+        return view('users.page.apply.index',compact('my_job_applys'));
+    }
+
+    public function allJob(){
+        $jobs = Job::all();
+        $message = "No post available";
+        $categories = Category::all();
+        return view('users.page.job.all',compact('jobs','message','categories'));
+    }
+
+    public function categoryJob($id){
+        $category = Category::find($id);
+        return view('users.page.job.category-job');
+
+    }
+
 }

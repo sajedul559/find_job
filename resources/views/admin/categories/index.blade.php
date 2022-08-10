@@ -37,7 +37,7 @@
                     </thead>
                     <tbody>
 
-                   @foreach($categories as $key=>$row) 	
+                   @foreach($categories as $key=>$row)
                     <tr>
                       <td>{{ $row->name }}</td>
                       <td>
@@ -46,14 +46,14 @@
                          @else
                          <span class="badge badge-warning">DeActive</span>
 
-                         @endif   
+                         @endif
                       </td>
                       <td>
                       	<a href="#" class="btn btn-info btn-sm edit" data-id="{{ $row->id }}" data-toggle="modal" data-target="#editModal" ><i class="fas fa-edit"></i></a>
                       	<a href="{{route('admin.categories.destroy',$row->id) }}" class="btn btn-danger btn-sm" id="delete"><i class="fas fa-trash"></i></a>
                       </td>
                     </tr>
-                   @endforeach	
+                   @endforeach
                     </tbody>
                   </table>
                 </div>
@@ -62,11 +62,11 @@
 	  </div>
 	</div>
     {{-- category edit modal --}}
-<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="categoryModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Add New Category</h5>
+          <h5 class="modal-title" id="categoryModal">Add New Category</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -78,15 +78,15 @@
               <label for="category_name">Category Name</label>
               <input type="text" class="form-control" id="category_name" name="name" required="">
               <small id="emailHelp" class="form-text text-muted">This is your main category</small>
-            </div> 
+            </div>
             <div class="form-group">
               <label for="category_name">Status </label>
               <select class="form-select form-control"  name="status" aria-label="Default select example">
                 <option class="form-control" selected>Open this select menu</option>
                 <option class="form-control" value="1">Active</option>
                 <option class="form-control" value="2">Inactive</option>
-              </select>             
-            </div>              
+              </select>
+            </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -96,7 +96,7 @@
       </div>
     </div>
 </div>
-<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+{{-- <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -112,15 +112,15 @@
             <label for="category_name">Category Name</label>
             <input type="text" class="form-control" id="category_name" name="name" required="" >
             <small id="emailHelp" class="form-text text-muted">This is your main category</small>
-          </div> 
+          </div>
           <div class="form-group">
             <label for="category_name">Status </label>
             <select class="form-select form-control"  name="status" aria-label="Default select example">
               <option class="form-control" selected>Open this select menu</option>
               <option class="form-control" value="1">Active</option>
               <option class="form-control" value="2">Inactive</option>
-            </select>             
-          </div>              
+            </select>
+          </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -129,7 +129,7 @@
       </form>
     </div>
   </div>
-</div>
+</div> --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <script>
@@ -138,7 +138,7 @@
     $.get('categories/+ +/edit/'+id,function(data){
       $('modal_data').html(data);
     })
-    
+
   })
 </script>
 @endsection

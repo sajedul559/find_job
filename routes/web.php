@@ -39,10 +39,9 @@ Route::group(['namespace' => 'App\Http\Controllers\Admin'], function() {
         Route::group(['middleware'=>'admin'],function(){
             Route::get('/',[AdminController::class,'index'])->name('index');
             Route::get('/logout',[AdminController::class,'logout'])->name('logout');
-            
+
             Route::resource('categories', CategoryController::class);
 
-            
         });
 
 
@@ -62,6 +61,13 @@ Route::group(['namespace' => 'Backend'], function() {
         Route::get('/post/delete/{id}',[UserController::class,'deletePost'])->name('post.delete');
         Route::post('/profile/update',[UserController::class,'profileUpdate'])->name('profile.update');
         Route::post('/search',[UserController::class,'searchPost'])->name('search.post');
+        Route::get('/single/post/{id}',[UserController::class,'singlePost'])->name('single.post');
+        Route::get('/apply/{id}',[UserController::class,'apply'])->name('apply');
+        Route::get('/apply',[UserController::class,'showApply'])->name('apply.all');
+        Route::get('/all-jop-post',[UserController::class,'allJob'])->name('job.all');
+        Route::get('/category/{id}',[UserController::class,'categoryJob'])->name('cetegory.job');
+
+
 
 
 

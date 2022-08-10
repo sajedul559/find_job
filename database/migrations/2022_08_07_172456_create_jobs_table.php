@@ -16,10 +16,17 @@ class CreateJobsTable extends Migration
         Schema::create('jobs', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->nullable();
+            $table->integer('category_id')->nullable();
             $table->string('title')->nullable();
             $table->string('description')->nullable();
             $table->string('status')->nullable();
             $table->string('image')->nullable();
+            $table->string('company_name')->nullable();
+            $table->integer('vacancy')->nullable();
+            $table->string('location')->nullable();
+            $table->string('email')->nullable();
+            $table->string('type')->nullable();
+            $table->integer('salary_range')->nullable();
             $table->timestamps();
         });
     }

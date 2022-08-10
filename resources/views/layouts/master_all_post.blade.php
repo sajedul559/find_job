@@ -42,7 +42,6 @@
     <main>
 
         <!-- slider Area Start-->
-       @include('layouts.slider')
         <!-- slider Area End-->
         <!-- Our Services Start -->
         @yield('content')

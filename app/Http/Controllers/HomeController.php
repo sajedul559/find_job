@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Job;
+use DB;
+use Carbon\Carbon;
+
+
 
 class HomeController extends Controller
 {
@@ -21,7 +25,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $post = Job::where('status','Active')->get();
-        return view('home',compact('post'));
+      
+        $posts = Job::where('status','Active')->get();
+
+        return view('home',compact('posts'));
     }
 }
