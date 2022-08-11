@@ -2,6 +2,29 @@
 @section('content')
 <div class="our-services section-pad-t30">
             <div class="container">
+                <div class="row">
+                    {{-- <div class="col-xl-8">
+                        <!-- form -->
+                        <form action="{{route('user.search.post')}}" class="search-box" method="post">
+                            @csrf
+                            <div class="input-form">
+                                <input type="text" name="search" id="search" placeholder="Job Tittle or keyword">
+                            </div>
+                            <div class="select-form">
+                                <div class="select-itms " >
+                                    <select name="select" id="select1">
+                                        <option value="">Location BD</option>
+                                        <option value="">Location PK</option>
+                                        <option value="">Location US</option>
+                                        <option value="">Location UK</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+
+                        </form>
+                    </div> --}}
+                </div>
                 <!-- Section Tittle -->
                 <div class="row">
                     <div class="col-lg-12">
@@ -23,19 +46,18 @@
                             </div>
                         </div>
                     </div> --}}
-                    @foreach ($posts as $data )
-                        <div class="card" style="width: 18rem; margin-right:3px;">
-                            <img class="card-img-top" src="{{ asset('images/job/' . $data->image) }}"height="185" widht="285" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">{{$data->title}}</h5>
-                                <p class="card-text">{{substr($data->description,0,102)}}.........</p>
-                                <div class="apply-btn2">
-                                    <a href="{{route('user.single.post',$data->id)}}" class="btn">Show Job Details</a>
-                            </div>
-                            </div>
-                        </div>
-                    @endforeach
-
+                            @foreach ($posts as $data )
+                                <div class="card" style="width: 18rem; margin-right:3px;" >
+                                    <img class="card-img-top" src="{{ asset('images/job/' . $data->image) }}"height="185" widht="285" alt="Card image cap">
+                                    <div class="card-body" >
+                                        <h5 class="card-title">{{$data->title}}</h5>
+                                        <p class="card-text">{{substr($data->description,0,102)}}.........</p>
+                                        <div class="apply-btn2">
+                                            <a href="{{route('user.single.post',$data->id)}}" class="btn">Show Job Details</a>
+                                    </div>
+                                    </div>
+                                </div>
+                            @endforeach
 
                 </div>
                 <!-- More Btn -->
@@ -113,4 +135,27 @@
             </div>
         </section>
         <!-- Featured_job_end -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  <script type="text/javascript">
+   $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+   });
+      $(document).ready(function() {
+
+        $('#search').on('keyup', function() {
+            let search_string = $('#search').val();
+            $.ajax({
+                url:"{{route('user.search.post')}}",
+                method:"GET",
+                data:{search_string:search_string},
+                success:function(data){
+                    $('#product').html(data);
+                }
+            })
+        })
+      });
+  </script>
 @endsection

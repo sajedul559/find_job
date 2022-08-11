@@ -30,8 +30,8 @@
                     <div class="stat-icon dib"><i class="ti-money color-success border-success"></i>
                     </div>
                     <div class="stat-content dib">
-                        <div class="stat-text">Total Profit</div>
-                        <div class="stat-digit">1,012</div>
+                        <div class="stat-text">Total Apply</div>
+                        <div class="stat-digit">{{$jobapply}}</div>
                     </div>
                 </div>
             </div>
@@ -42,8 +42,31 @@
                     <div class="stat-icon dib"><i class="ti-user color-primary border-primary"></i>
                     </div>
                     <div class="stat-content dib">
-                        <div class="stat-text">New Customer</div>
-                        <div class="stat-digit">961</div>
+                        <div class="stat-text"> <span class="badge badge-success">Total Users</span></div>
+                        <div class="stat-digit"> <span class="badge badge-success">{{$totalusers}}</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="card">
+                <div class="stat-widget-one">
+                    <div class="stat-icon dib"><i class="ti-user color-primary border-primary"></i>
+                    </div>
+                    <div class="stat-content dib">
+                        <div class="stat-text"> <span class="badge badge-success">Active Users</span></div>
+                        <div class="stat-digit"> <span class="badge badge-success">{{$activeusers}}</span></div>
+                    </div>
+                </div>
+            </div>
+        </div> <div class="col-lg-3">
+            <div class="card">
+                <div class="stat-widget-one">
+                    <div class="stat-icon dib"><i class="ti-user color-primary border-primary"></i>
+                    </div>
+                    <div class="stat-content dib">
+                        <div class="stat-text"> <span class="badge badge-warning">Dactive User</span></div>
+                        <div class="stat-digit"> <span class="badge badge-warning">{{$deactiveusers}}</span></div>
                     </div>
                 </div>
             </div>
@@ -54,8 +77,8 @@
                     <div class="stat-icon dib"><i class="ti-layout-grid2 color-pink border-pink"></i>
                     </div>
                     <div class="stat-content dib">
-                        <div class="stat-text">Active Projects</div>
-                        <div class="stat-digit">770</div>
+                        <div class="stat-text"> <span class="badge badge-success">Total Jop</span></div>
+                        <div class="stat-digit"> <span class="badge badge-success">{{$jobs}}</span></div>
                     </div>
                 </div>
             </div>
@@ -63,19 +86,43 @@
         <div class="col-lg-3">
             <div class="card">
                 <div class="stat-widget-one">
-                    <div class="stat-icon dib"><i class="ti-link color-danger border-danger"></i></div>
+                    <div class="stat-icon dib"><i class="ti-layout-grid2 color-pink border-pink"></i>
+                    </div>
                     <div class="stat-content dib">
-                        <div class="stat-text">Referral</div>
-                        <div class="stat-digit">2,781</div>
+                        <div class="stat-text"> <span class="badge badge-success">Active Jobs</span></div>
+                        <div class="stat-digit"> <span class="badge badge-success">{{$activejobs}}</span></div>
+                    </div>
+                </div>
+            </div>
+        </div> <div class="col-lg-3">
+            <div class="card">
+                <div class="stat-widget-one">
+                    <div class="stat-icon dib"><i class="ti-layout-grid2 color-pink border-pink"></i>
+                    </div>
+                    <div class="stat-content dib">
+                        <div class="stat-text"> <span class="badge badge-success">Dactive Job </span></div>
+                        <div class="stat-digit"> <span class="badge badge-success">{{$deactivejobs}}</span></div>
+                    </div>
+                </div>
+            </div>
+        </div> <div class="col-lg-3">
+            <div class="card">
+                <div class="stat-widget-one">
+                    <div class="stat-icon dib"><i class="ti-layout-grid2 color-pink border-pink"></i>
+                    </div>
+                    <div class="stat-content dib">
+                        <div class="stat-text"> <span class="badge badge-success">All Category</span></div>
+                        <div class="stat-digit"> <span class="badge badge-success">{{$category}}</span></div>
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
-    
+
     <!-- /# row -->
 
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-lg-8">
             <div class="card">
                 <div class="card-title">
@@ -96,15 +143,15 @@
                 </div>
             </div>
         </div>
-    </div>
-   
+    </div> --}}
 
-    <div class="row">
+
+    {{-- <div class="row">
         <div class="col-lg-12">
             <div class="footer">
                 <p>2018 © Admin Board. - <a href="#">example.com</a></p>
             </div>
         </div>
-    </div>
+    </div> --}}
 </section>
 @endsection

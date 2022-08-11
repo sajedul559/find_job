@@ -122,6 +122,14 @@ class UserController extends Controller
             ->get();
         return view('search', compact('posts'));
     }
+    // public function searchPost(Request $request){
+    //     // $search = $request->input('search');
+
+    //      $posts = Job::where('title', 'LIKE', '%'.$request->search_string.'%')
+    //          ->get();
+    //          return $posts;
+    //      return view('search', compact('posts'))->render();
+    //  }
     public function singlePost($id){
       $post = Job::find($id);
       $usercheck = Apply::where('user_id',Auth::user()->id)->get();

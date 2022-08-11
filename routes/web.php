@@ -5,6 +5,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\JobManageController;
+use App\Http\Controllers\Admin\UserManageController;
 
 
 
@@ -47,6 +49,33 @@ Route::group(['namespace' => 'App\Http\Controllers\Admin'], function() {
             Route::get('/category/edit/{id}',[CategoryController::class,'edit'])->name('category.edit');
             Route::post('/category/update',[CategoryController::class,'update'])->name('category.update');
             Route::get('/category/delete/{id}',[CategoryController::class,'delete'])->name('category.delete');
+            ///User Manage Routes
+            Route::get('/user/create',[UserManageController::class,'createuser'])->name('user.create');
+            Route::post('/user/store',[UserManageController::class,'storeuser'])->name('user.store');
+            Route::post('/user/update/{id}',[UserManageController::class,'updateuser'])->name('user.update');
+            Route::get('/user/delete/{id}',[UserManageController::class,'deleteuser'])->name('user.delete');
+            Route::get('/status-active/{id}',[UserManageController::class,'statusactive'])->name('user.statusactive');
+            Route::get('/status-deactive/{id}',[UserManageController::class,'statusdeactive'])->name('user.statusdeactive');
+
+
+
+
+
+            Route::get('/all-users',[UserManageController::class,'allUsers'])->name('user.allUsers');
+            Route::post('/active-users',[UserManageController::class,'activeUsers'])->name('user.activeUsers');
+            Route::get('/deactive-users',[UserManageController::class,'deactiveUsers'])->name('user.deactiveUsers');
+
+
+            //Job manage route
+            Route::get('/all-job',[JobManageController::class,'allJobs'])->name('job.allJobs');
+            Route::get('/active-job',[JobManageController::class,'activeJobs'])->name('job.activeJobs');
+            Route::get('/deactive-job',[JobManageController::class,'deactiveJobs'])->name('job.deactiveJobs');
+
+            Route::get('/apply-job',[JobManageController::class,'applyJobs'])->name('job.apply');
+
+            Route::get('/apply-job',[JobManageController::class,'applyJobs'])->name('job.apply');
+
+
 
 
 
