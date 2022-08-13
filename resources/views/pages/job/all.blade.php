@@ -1,4 +1,6 @@
 @extends('layouts.master_all_post')
+@section('title', 'User All Job Post')
+
 
 @section('content')
 <main>

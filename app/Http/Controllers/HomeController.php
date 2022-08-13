@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Job;
+use App\Models\Category;
+
 use DB;
 use Carbon\Carbon;
 
@@ -27,7 +29,9 @@ class HomeController extends Controller
     {
       
         $posts = Job::where('status','Active')->get();
+        $recentJob = Job::where('status','Active')->paginate(2);
+        $categoryAll = Category::all();
 
-        return view('home',compact('posts'));
+        return view('home',compact('posts','recentJob','categoryAll'));
     }
 }

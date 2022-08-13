@@ -1,4 +1,6 @@
 @extends('admin.layouts.master')
+@section('title', 'Admin Dashboard')
+
 @section('content')
 <div class="row">
     <div class="col-lg-8 p-r-0 title-margin-right">
@@ -13,7 +15,7 @@
         <div class="page-header">
             <div class="page-title">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Dashboard</a></li>
                     <li class="breadcrumb-item active">Home</li>
                 </ol>
             </div>
@@ -26,97 +28,117 @@
     <div class="row">
         <div class="col-lg-3">
             <div class="card">
-                <div class="stat-widget-one">
-                    <div class="stat-icon dib"><i class="ti-money color-success border-success"></i>
+                <a href="{{route('admin.job.apply')}}">
+                    <div class="stat-widget-one">
+                        <div class="stat-icon dib"><i class="fa fa-at color-success border-success"></i>
+                        </div>
+                        <div class="stat-content dib">
+                            <div class="stat-text">Total Apply</div>
+                            <div class="stat-digit">{{$jobapply}}</div>
+                        </div>
                     </div>
-                    <div class="stat-content dib">
-                        <div class="stat-text">Total Apply</div>
-                        <div class="stat-digit">{{$jobapply}}</div>
-                    </div>
-                </div>
+               </a>
             </div>
         </div>
         <div class="col-lg-3">
             <div class="card">
-                <div class="stat-widget-one">
-                    <div class="stat-icon dib"><i class="ti-user color-primary border-primary"></i>
+                <a href="{{route('admin.user.allUsers')}}">
+
+                    <div class="stat-widget-one">
+                        <div class="stat-icon dib"><i class="ti-user color-primary border-primary"></i>
+                        </div>
+                        <div class="stat-content dib">
+                            <div class="stat-text"> <span class="badge badge-success">Total Users</span></div>
+                            <div class="stat-digit"> <span class="badge badge-success">{{$totalusers}}</span></div>
+                        </div>
                     </div>
-                    <div class="stat-content dib">
-                        <div class="stat-text"> <span class="badge badge-success">Total Users</span></div>
-                        <div class="stat-digit"> <span class="badge badge-success">{{$totalusers}}</span></div>
-                    </div>
-                </div>
+                </a> 
+
             </div>
         </div>
         <div class="col-lg-3">
             <div class="card">
-                <div class="stat-widget-one">
-                    <div class="stat-icon dib"><i class="ti-user color-primary border-primary"></i>
+                <a href="{{route('admin.user.allUsers')}}">
+                    <div class="stat-widget-one">
+                        <div class="stat-icon dib"><i class="ti-user color-primary border-primary"></i>
+                        </div>
+                        <div class="stat-content dib">
+                            <div class="stat-text"> <span class="badge badge-success">Active Users</span></div>
+                            <div class="stat-digit"> <span class="badge badge-success">{{$activeusers}}</span></div>
+                        </div>
                     </div>
-                    <div class="stat-content dib">
-                        <div class="stat-text"> <span class="badge badge-success">Active Users</span></div>
-                        <div class="stat-digit"> <span class="badge badge-success">{{$activeusers}}</span></div>
-                    </div>
-                </div>
+                </a>
             </div>
         </div> <div class="col-lg-3">
             <div class="card">
-                <div class="stat-widget-one">
-                    <div class="stat-icon dib"><i class="ti-user color-primary border-primary"></i>
+                <a href="{{route('admin.user.deactiveUsers')}}">
+                    <div class="stat-widget-one">
+                        <div class="stat-icon dib"><i class="ti-user color-primary border-primary"></i>
+                        </div>
+                        <div class="stat-content dib">
+                            <div class="stat-text"> <span class="badge badge-warning">Dactive User</span></div>
+                            <div class="stat-digit"> <span class="badge badge-warning">{{$deactiveusers}}</span></div>
+                        </div>
                     </div>
-                    <div class="stat-content dib">
-                        <div class="stat-text"> <span class="badge badge-warning">Dactive User</span></div>
-                        <div class="stat-digit"> <span class="badge badge-warning">{{$deactiveusers}}</span></div>
-                    </div>
-                </div>
+                </a>
             </div>
         </div>
         <div class="col-lg-3">
             <div class="card">
-                <div class="stat-widget-one">
-                    <div class="stat-icon dib"><i class="ti-layout-grid2 color-pink border-pink"></i>
+                <a href="{{route('admin.job.allJobs')}}">
+                    <div class="stat-widget-one">
+                        <div class="stat-icon dib"><i class="fa fa-at color-success border-success"></i>
+                        </div>
+                        <div class="stat-content dib">
+                            <div class="stat-text"> <span class="">Total Category</span></div>
+                            <div class="stat-digit"> <span class="">{{$category}}</span></div>
+                        </div>
                     </div>
-                    <div class="stat-content dib">
-                        <div class="stat-text"> <span class="badge badge-success">Total Jop</span></div>
-                        <div class="stat-digit"> <span class="badge badge-success">{{$jobs}}</span></div>
-                    </div>
-                </div>
+                </a>
             </div>
         </div>
         <div class="col-lg-3">
             <div class="card">
-                <div class="stat-widget-one">
-                    <div class="stat-icon dib"><i class="ti-layout-grid2 color-pink border-pink"></i>
+                <a href="{{route('admin.job.allJobs')}}">
+                    <div class="stat-widget-one">
+                        <div class="stat-icon dib"><i class="ti-layout-grid2 color-pink border-pink"></i>
+                        </div>
+                        <div class="stat-content dib">
+                            <div class="stat-text"> <span class="badge badge-success">Total Job</span></div>
+                            <div class="stat-digit"> <span class="badge badge-success">{{$jobs}}</span></div>
+                        </div>
                     </div>
-                    <div class="stat-content dib">
-                        <div class="stat-text"> <span class="badge badge-success">Active Jobs</span></div>
-                        <div class="stat-digit"> <span class="badge badge-success">{{$activejobs}}</span></div>
-                    </div>
-                </div>
-            </div>
-        </div> <div class="col-lg-3">
-            <div class="card">
-                <div class="stat-widget-one">
-                    <div class="stat-icon dib"><i class="ti-layout-grid2 color-pink border-pink"></i>
-                    </div>
-                    <div class="stat-content dib">
-                        <div class="stat-text"> <span class="badge badge-success">Dactive Job </span></div>
-                        <div class="stat-digit"> <span class="badge badge-success">{{$deactivejobs}}</span></div>
-                    </div>
-                </div>
-            </div>
-        </div> <div class="col-lg-3">
-            <div class="card">
-                <div class="stat-widget-one">
-                    <div class="stat-icon dib"><i class="ti-layout-grid2 color-pink border-pink"></i>
-                    </div>
-                    <div class="stat-content dib">
-                        <div class="stat-text"> <span class="badge badge-success">All Category</span></div>
-                        <div class="stat-digit"> <span class="badge badge-success">{{$category}}</span></div>
-                    </div>
-                </div>
+                </a>
             </div>
         </div>
+        <div class="col-lg-3">
+            <div class="card">
+                <a href="{{route('admin.job.deactiveJobs')}}">
+                    <div class="stat-widget-one">
+                        <div class="stat-icon dib"><i class="ti-layout-grid2 color-pink border-pink"></i>
+                        </div>
+                        <div class="stat-content dib">
+                            <div class="stat-text"> <span class="badge badge-success">Active Jobs</span></div>
+                            <div class="stat-digit"> <span class="badge badge-success">{{$activejobs}}</span></div>
+                        </div>
+                    </div>
+               </a>
+            </div>
+        </div>
+         <div class="col-lg-3">
+            <div class="card">
+                <a href="{{route('admin.job.deactiveJobs')}}">
+                    <div class="stat-widget-one">
+                        <div class="stat-icon dib"><i class="ti-layout-grid2 color-pink border-pink"></i>
+                        </div>
+                        <div class="stat-content dib">
+                            <div class="stat-text"> <span class="badge badge-warning">Dactive Job </span></div>
+                            <div class="stat-digit"> <span class="badge badge-warning">{{$deactivejobs}}</span></div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        
 
     </div>
 

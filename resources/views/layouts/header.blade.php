@@ -39,6 +39,7 @@
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                   <a class="dropdown-item" href="{{route('user.profile')}}">Profile</a>
+                                  <a class="dropdown-item" href="{{route('user.apply.all')}}">All Job Apply</a>
                                   <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
@@ -53,6 +54,7 @@
 
                         </div>
                     </div>
+                    
                     <!-- Mobile Menu -->
                     <div class="col-12">
                         <div class="mobile_menu d-block d-lg-none"></div>

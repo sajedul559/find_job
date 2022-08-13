@@ -32,9 +32,24 @@ class LoginController extends Controller
      * Create a new controller instance.
      *
      * @return void
+     * 
      */
+    public function showLoginForm()
+    {
+        if(!session()->has('url.intended'))
+        {
+            session(['url.intended' => url()->previous()]);
+        }
+        return view('auth.login');
+    }
     public function __construct()
     {
+        $this->redirectTo = url()->previous();
         $this->middleware('guest')->except('logout');
     }
 }
+    // public function __construct()
+    // {
+    //     $this->middleware('guest')->except('logout');
+    // }
+

@@ -39,9 +39,16 @@ class UserManageController extends Controller
         return response()->json(['status'=>true,"redirect_url"=>url('admin/all-users')]);
 
     }
+    public function editeuser($id){
+        $user = User::where('id',$id)->delete();
+        return view('admin.users.edit',compact('user'));
+    }
     public function deleteuser ($id){
         $user = User::where('id',$id)->delete();
       //  return back()->with('success','Successfully user deleted!');
+      return response()->json([
+        'success' => 'Record deleted successfully!'
+    ]);
 
       return Response::json($user);
     }
@@ -49,14 +56,26 @@ class UserManageController extends Controller
         $user = User::where('id',$id)->first();
         $user->status = 1;
         $user->save();
-        return redirect()->back();
+       return back()->with('success','Status Updated');
+      
+
 
     }
     public function statusdeactive(Request $request, $id){
         $user = User::where('id',$id)->first();
         $user->status = 0;
         $user->save();
-       return redirect()->back();
+    //   // return redirect()->back();
+    //    return response()->json([
+    //     'message'=>'success fully update status',
+    //     'user' => $user,
+    //    ]);
+    return back()->with('success','Status Updated');
+
+    }
+    public function showallusers(){
+        $user = User::all();
+        return response()->json($user);
     }
 
 }

@@ -1,4 +1,6 @@
 @extends('admin.layouts.master')
+@section('title', 'All Applys')
+
 @section('content')
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -52,8 +54,8 @@
                       <td>{{ $data->job->location }}</td>
                       <td>{{ $data->job->type }}</td>
                       <td>
-                      	<a href="{{route('admin.category.edit',$data->id)}}" class="btn btn-info btn-sm update_std" data-id="{{ $data->id }}" data-toggle="modal" data-target="#editModal" ><i class="fas fa-edit"></i></a>
-                      	<a href="{{route('admin.category.delete',$data->id) }}" class="btn btn-danger btn-sm" id="delete"><i class="fas fa-trash"></i></a>
+                      	<a href="#" class="btn btn-info btn-sm update_std" data-id="{{ $data->id }}" data-toggle="modal" data-target="#editModal" ><i class="fas fa-edit"></i></a>
+                      	<a href="#" class="btn btn-danger btn-sm" id="delete"><i class="fas fa-trash"></i></a>
                       </td>
                     </tr>
                    @endforeach

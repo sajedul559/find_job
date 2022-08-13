@@ -84,7 +84,19 @@
                           <li>Application date : <span>{{Carbon::now()}}</span></li>
                       </ul>
                      <div class="apply-btn2">
+                        @auth
+                        @if ($post->applyJobs()->where('user_id', auth()->user()->id)->exists())
+                        <h2 class="btn"><span class="badge badge-success">{{auth()->user()->name}}</span> alreadly applied &#9989;</h2>
+                            
+                        @else
                         <a href="{{route('user.apply',$post->id)}}" class="btn">Apply Now</a>
+
+                        @endif
+
+                        @endauth
+                        @guest
+                         <a href="{{route('login')}}" class="btn">please Login for apply job</a>
+                        @endguest
 
                      </div>
                    </div>

@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.profile_master')
 @section('content')
 <div class="our-services section-pad-t30">
             <div class="container">

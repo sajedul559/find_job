@@ -1,4 +1,5 @@
 @extends('layouts.profile_master')
+@section('title', 'User Profile')
 
 @section('content')
 <div class="container">
@@ -26,41 +27,40 @@
                       <p class="text-secondary mb-1">Full Stack Developer</p>
                       <p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
                       <a href="{{route('user.apply.all')}}"class="btn btn-sm btn-outline-primary">Ur Apply</a>
+                      <a href="{{route('user.post.all')}}"class="btn btn-sm btn-outline-primary">Ur Post</a>
                     </div>
                   </div>
                 </div>
               </div>
+@guest
+
+ @else
+@endguest
 
             </div>
             <div class="col-md-8">
               <div class="card mb-3">
                 <div class="card-body">
 
-                    <table class="table">
-                        <thead>
-                          <tr>
-                            <th scope="col">Title</th>
-                            <th scope="col">Description</th>
-                            <th scope="col">Action</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                            @forelse ($post as $data )
-                            <tr>
-                                <td>{{$data->title}}</td>
-                                <td> {{ substr($data->description, 0,  20) }}</td>
-                                <td>
-                                    <a href="{{route('user.post.edit',$data->id)}}" class="btn btn-info btn-sm edit"  ><i class="fas fa-edit"></i></a>
-                                    <a href="{{route('user.post.delete',$data->id)}}" onclick"handleDelete(event);" id="delete" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
+                    <form action="{{route('user.profile.update')}}" method="post" enctype="multipart/form">
+                        @csrf
+                        <div class="form-group">
+                          <label for="exampleInputEmail1">name</label>
+                          <input type="text" class="form-control name="name"  aria-describedby="emailHelp" @guest value=""  @else value="{{ auth()->user()->name }}"  @endguest >
+                           
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1"> Address</label>
+                            <input type="text" class="form-control" name="address" aria-describedby="emailHelp" @guest value=""  @else value="{{ auth()->user()->address }}"  @endguest>
+                          </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1"> Phone</label>
+                            <input type="text" class="form-control" name="phone" aria-describedby="emailHelp" @guest value=""  @else value="{{ auth()->user()->phone }}"  @endguest >
+                       </div>
 
-                                </td>
-                              </tr>
-                            @empty
-                            <h2 class="text-center">{{$message}}</h2>
 
-                            @endforelse
-                        </tbody>
-                      </table>
+                        <button type="submit" class="btn btn-primary">Update Profile</button>
+                      </form>
 
                 </div>
               </div>
@@ -69,4 +69,3 @@
     </div>
 </div>
 @endsection
-

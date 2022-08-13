@@ -1,4 +1,6 @@
 @extends('admin.layouts.master')
+@section('title', 'Deactive Users')
+
 @section('content')
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -48,13 +50,12 @@
                       <td>{{ $data->address }}</td>
 
                       <td>
-                         @if($data->status==1)
-                           <span class="badge badge-success">Active</span>
-                         @else
-                         <span class="badge badge-warning">DeActive</span>
-
-                         @endif
-                      </td>
+                        @if($data->status==1)
+                        <a href="{{route('admin.user.statusdeactive',$data->id)}}"   id="active" data-id="{{$data->id}}"><span class="badge badge-success" >Active</span></a>
+                        @else
+                        <a href="{{route('admin.user.statusactive',$data->id)}}" id="deactive"><span class="badge badge-warning" >DeActive</span></a>
+                        @endif
+                    </td>
                       <td>
                       	<a href="{{route('admin.category.edit',$data->id)}}" class="btn btn-info btn-sm update_std" data-id="{{ $data->id }}" data-toggle="modal" data-target="#editModal" ><i class="fas fa-edit"></i></a>
                       	<a href="{{route('admin.category.delete',$data->id) }}" class="btn btn-danger btn-sm" id="delete"><i class="fas fa-trash"></i></a>

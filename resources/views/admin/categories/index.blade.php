@@ -1,4 +1,5 @@
 @extends('admin.layouts.master')
+@section('title', 'All Category')
 @section('content')
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->

@@ -3,27 +3,27 @@
 <div class="our-services section-pad-t30">
             <div class="container">
                 <div class="row">
-                    {{-- <div class="col-xl-8">
-                        <!-- form -->
-                        <form action="{{route('user.search.post')}}" class="search-box" method="post">
-                            @csrf
-                            <div class="input-form">
-                                <input type="text" name="search" id="search" placeholder="Job Tittle or keyword">
+                        <div class="col-lg-12">
+                            <div class="section-tittle text-center">
+                                <span>FEATURED TOURS Packages</span>
+                                <h2>Browse Top Categories </h2>
                             </div>
-                            <div class="select-form">
-                                <div class="select-itms " >
-                                    <select name="select" id="select1">
-                                        <option value="">Location BD</option>
-                                        <option value="">Location PK</option>
-                                        <option value="">Location US</option>
-                                        <option value="">Location UK</option>
-                                    </select>
+                        </div>
+                </div>
+                <div class="row d-flex justify-contnet-center">
+                
+                            @foreach ($categoryAll as $data )
+                                <div class="card" style="width: 18rem; margin-right:3px;" >
+                                    <div class="card-body" >
+                                        <h5 class="card-title">{{$data->name}}</h5>
+                                        <p class="card-text">{{substr($data->description,0,102)}}.........</p>
+                                        <div class="apply-btn2">
+                                            <a href="{{route('user.category.all',$data->id)}}" class="btn">Show Job Details</a>
+                                    </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            @endforeach
 
-                        </form>
-                    </div> --}}
                 </div>
                 <!-- Section Tittle -->
                 <div class="row">
@@ -35,17 +35,7 @@
                     </div>
                 </div>
                 <div class="row d-flex justify-contnet-center">
-                    {{-- <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                        <div class="single-services text-center mb-30">
-                            <div class="services-ion">
-                                <span class="flaticon-tour"></span>
-                            </div>
-                            <div class="services-cap">
-                               <h5><a href="job_listing.html">Design & Creative</a></h5>
-                                <span>(653)</span>
-                            </div>
-                        </div>
-                    </div> --}}
+                
                             @foreach ($posts as $data )
                                 <div class="card" style="width: 18rem; margin-right:3px;" >
                                     <img class="card-img-top" src="{{ asset('images/job/' . $data->image) }}"height="185" widht="285" alt="Card image cap">
@@ -99,11 +89,11 @@
                         </div>
                     </div>
                 </div>
-                @forelse ($posts as $data )
-                <div class="row justify-content-center">
+                @forelse ($recentJob as $data )
+                <div class="row justify-content-center" >
                     <div class="col-xl-10">
                         <!-- single-job-content -->
-                        <div class="single-job-items mb-30">
+                        <div class="single-job-items mb-30 ">
                             <div class="job-items">
                                 <div class="company-img">
                                     <a href="{{route('user.single.post',$data->id)}}"><img src="{{ asset('images/job/' . $data->image) }}  "alt="" width="30px;" height="30px"></a>
@@ -119,7 +109,7 @@
                             </div>
                             <div class="items-link f-right">
                                 <a href="{{route('user.single.post',$data->id)}}">{{$data->type}}</a>
-                                <span>{{ Carbon::parse($data['created_at']);}}</span>
+                                <span>{{ $data->created_at->diffForHumans()}}</span>
                             </div>
                         </div>
                         <!-- single-job-content -->
@@ -128,6 +118,9 @@
 
                     </div>
                 </div>
+                {{-- {{ $recentJob->links() }} --}}
+
+
                 @empty
 
                 @endforelse

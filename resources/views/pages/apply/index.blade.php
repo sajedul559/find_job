@@ -1,4 +1,6 @@
 @extends('layouts.profile_master')
+@section('title', 'All Apply')
+
 
 @section('content')
 <div class="container">
@@ -22,9 +24,9 @@
                   <div class="d-flex flex-column align-items-center text-center">
                     <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
                     <div class="mt-3">
-                      <h4>John Doe</h4>
-                      <p class="text-secondary mb-1">Full Stack Developer</p>
-                      <p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
+                      <h4>{{auth()->user()->name}}</h4>
+                      {{-- <p class="text-secondary mb-1">{{auth()->user()->name}}</p> --}}
+                      <p class="text-muted font-size-sm"> {{auth()->user()->address}}</p>
                       <a href="{{route('user.post.all')}}"class="btn btn-sm btn-outline-primary">Ur Post</a>
                     </div>
                   </div>
@@ -35,15 +37,17 @@
             <div class="col-md-8">
               <div class="card mb-3">
                 <div class="card-body">
-
+                  <h1 class="text-center"><span class="badge badge-info">{{auth()->user()->name }} </span>  Your Job Apply List</h1>
                     <table class="table">
                         <thead>
                           <tr>
-                            <th scope="col">Post Name</th>
+                            <th scope="col">Designation</th>
                             <th scope="col">Company</th>
+                            <th scope="col">Co. Web</th>
+
                             <th scope="col">Type</th>
                             <th scope="col">Salary Range</th>
-                            <th scope="col">Categy Nam</th>
+                            <th scope="col">Location</th>
 
 
                           </tr>
@@ -53,9 +57,10 @@
                             <tr>
                                 <td>{{$data->job->title}}</td>
                                 <td>{{$data->job->company_name}}</td>
+                                <td>{{$data->job->web}}</td>
                                 <td>{{$data->job->type}}</td>
                                 <td>{{$data->job->salary_range}}</td>
-                                <td>{{$data->job->category->name}}</td>
+                                <td>{{$data->job->location}}</td>
                               </tr>
                             @empty
                             <h2 class="text-center">{{$message}}</h2>

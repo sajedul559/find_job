@@ -52,17 +52,24 @@ Route::group(['namespace' => 'App\Http\Controllers\Admin'], function() {
             ///User Manage Routes
             Route::get('/user/create',[UserManageController::class,'createuser'])->name('user.create');
             Route::post('/user/store',[UserManageController::class,'storeuser'])->name('user.store');
+            Route::get('/user/edit/{id}',[UserManageController::class,'editeuser'])->name('user.edit');
+
             Route::post('/user/update/{id}',[UserManageController::class,'updateuser'])->name('user.update');
             Route::get('/user/delete/{id}',[UserManageController::class,'deleteuser'])->name('user.delete');
+
             Route::get('/status-active/{id}',[UserManageController::class,'statusactive'])->name('user.statusactive');
             Route::get('/status-deactive/{id}',[UserManageController::class,'statusdeactive'])->name('user.statusdeactive');
 
 
 
+            //user show for status updat in javascript
+            Route::get('/showall-users',[UserManageController::class,'showallusers'])->name('user.showallUsers');
+           //user show for status updat in javascript
+
 
 
             Route::get('/all-users',[UserManageController::class,'allUsers'])->name('user.allUsers');
-            Route::post('/active-users',[UserManageController::class,'activeUsers'])->name('user.activeUsers');
+            Route::get('/active-users',[UserManageController::class,'activeUsers'])->name('user.activeUsers');
             Route::get('/deactive-users',[UserManageController::class,'deactiveUsers'])->name('user.deactiveUsers');
 
 
@@ -70,13 +77,16 @@ Route::group(['namespace' => 'App\Http\Controllers\Admin'], function() {
             Route::get('/all-job',[JobManageController::class,'allJobs'])->name('job.allJobs');
             Route::get('/active-job',[JobManageController::class,'activeJobs'])->name('job.activeJobs');
             Route::get('/deactive-job',[JobManageController::class,'deactiveJobs'])->name('job.deactiveJobs');
+            Route::get('/deactive-job',[JobManageController::class,'deactiveJobs'])->name('job.deactiveJobs');
+
 
             Route::get('/apply-job',[JobManageController::class,'applyJobs'])->name('job.apply');
 
             Route::get('/apply-job',[JobManageController::class,'applyJobs'])->name('job.apply');
 
 
-
+            Route::get('/user/status-active/{id}',[JobManageController::class,'statusactive'])->name('job.statusactive');
+            Route::get('/user/status-deactive/{id}',[JobManageController::class,'statusdeactive'])->name('job.statusdeactive');
 
 
 
@@ -92,20 +102,30 @@ Route::group(['namespace' => 'App\Http\Controllers\Admin'], function() {
 
 Route::group(['namespace' => 'Backend'], function() {
     Route::group(['prefix' => 'user','as'=>'user.'], function() {
-        Route::get('/profile',[UserController::class,'profile'])->name('profile');
-        Route::get('/post',[UserController::class,'postAll'])->name('post.all');
-        Route::get('/post/create',[UserController::class,'postForm'])->name('post.form');
-        Route::post('/post/create',[UserController::class,'storePost'])->name('post.create');
-        Route::get('/post/edit/{id}',[UserController::class,'editPost'])->name('post.edit');
-        Route::post('/post/update/{id}',[UserController::class,'updatePost'])->name('post.update');
-        Route::get('/post/delete/{id}',[UserController::class,'deletePost'])->name('post.delete');
-        Route::post('/profile/update',[UserController::class,'profileUpdate'])->name('profile.update');
+        Route::group(['middleware' => ['auth']], function () { 
+            Route::get('/post',[UserController::class,'postAll'])->name('post.all');
+            Route::get('/post/create',[UserController::class,'postForm'])->name('post.form');
+            Route::post('/post/create',[UserController::class,'storePost'])->name('post.create');
+            Route::get('/post/edit/{id}',[UserController::class,'editPost'])->name('post.edit');
+            Route::post('/post/update/{id}',[UserController::class,'updatePost'])->name('post.update');
+            Route::get('/post/delete/{id}',[UserController::class,'deletePost'])->name('post.delete');
+            Route::post('/profile/update',[UserController::class,'profileUpdate'])->name('profile.update');
+            Route::get('/apply/{id}',[UserController::class,'apply'])->name('apply');
+            Route::get('/apply',[UserController::class,'showApply'])->name('apply.all');
+            Route::get('/category/{id}',[UserController::class,'categoryJob'])->name('cetegory.job');
+            Route::get('/profile',[UserController::class,'profile'])->name('profile');
+
+
+
+        });
+        // Route::get('/post',[UserController::class,'postAll'])->name('post.all');
+       
         Route::post('/search',[UserController::class,'searchPost'])->name('search.post');
         Route::get('/single/post/{id}',[UserController::class,'singlePost'])->name('single.post');
-        Route::get('/apply/{id}',[UserController::class,'apply'])->name('apply');
-        Route::get('/apply',[UserController::class,'showApply'])->name('apply.all');
+       
         Route::get('/all-jop-post',[UserController::class,'allJob'])->name('job.all');
-        Route::get('/category/{id}',[UserController::class,'categoryJob'])->name('cetegory.job');
+        Route::get('/category-job/{id}',[JobManageController::class,'categoryJob'])->name('category.all');
+
 
 
 

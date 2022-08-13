@@ -1,4 +1,6 @@
 @extends('admin.layouts.master')
+@section('title', 'Crate User Form')
+
 @section('content')
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
